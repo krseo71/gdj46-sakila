@@ -5,6 +5,7 @@ public class Store { // 도메인 일치
 	private int managerStaffId;
 	private int addressId;
 	private String lastUpdate;
+	
 	public int getStoreId() {
 		return storeId;
 	}
@@ -29,7 +30,4 @@ public class Store { // 도메인 일치
 	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
-	
-	
-
 }
