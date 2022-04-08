@@ -76,8 +76,8 @@
 		<!-- 검색정보 그대로 전달하기 -->
 		<input type="hidden" name ="storeId" value ="<%=storeId%>">
 		<input type="hidden" name ="customerName" value ="<%=customerName%>">
-		<input type="hidden" name =beginDate" value ="<%=beginDate%>">
-		<input type="hidden" name =endDate value ="<%=endDate%>">
+		<input type="hidden" name ="beginDate" value ="<%=beginDate%>">
+		<input type="hidden" name ="endDate" value ="<%=endDate%>">
 		<!-- 상세검색 결과 테이블 -->
 		<table class="table table-bordered">
 		<thead>
@@ -96,7 +96,7 @@
 			</tr>
 		<tbody>
 				<%
-				for(Map m : rentalList) {
+				for(Map<String, Object> m : rentalList) {
 				%>
 			<tr>
 				<td><%=m.get("rentalId")%></td>

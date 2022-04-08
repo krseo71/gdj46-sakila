@@ -25,12 +25,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>filmInStock</title>
 </head>
-<body class="container">
+<body>
 	<h1>filmInStock</h1>
-	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
+	<a href="<%=request.getContextPath()%>../index.jsp" >index</a>
 	<form method = "post" action="<%=request.getContextPath()%>/filmInStock.jsp">
 		filmId 입력 : <input type = "number" name = "filmId">	
 		storeId 입력 :<input type = "number" name = "storeId">

@@ -31,12 +31,14 @@
 </head>
 <body>
 	<h1>actorInfoList</h1>
-	<table border=1>
+	<table border="1">
 		<thead>
-			<th>actorId</th>
-			<th>firstName</th>
-			<th>lastName</th>
-			<th>filmInfo</th>
+			<tr>
+				<th>actorId</th>
+				<th>firstName</th>
+				<th>lastName</th>
+				<th>filmInfo</th>
+			</tr>
 		</thead>
 		<tbody>
 			<%

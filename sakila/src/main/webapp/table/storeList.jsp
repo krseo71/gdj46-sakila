@@ -8,12 +8,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Store List</title>
+	<meta charset="UTF-8">
+	<title>Store List</title>
 </head>
 <body>
-	<a href="">index</a>
 	<h1>Store List</h1>
+	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
 	<table border="1">
 		<thead>
 			<tr>
@@ -27,7 +27,7 @@
 		</thead>
 		<tbody>
 			<%
-				for(Map m : list){
+				for(Map<String, Object> m : list) {
 			%>
 					<tr>
 						<td><%=m.get("storeId")%></td>
@@ -36,11 +36,11 @@
 						<td><%=m.get("addressId")%></td>
 						<td><%=m.get("staffAddress")%></td>
 						<td><%=m.get("lastUpdate")%></td>
-			<% 		
+					</tr>
+			<%
 				}
 			%>
 		</tbody>
 	</table>
-
 </body>
 </html>

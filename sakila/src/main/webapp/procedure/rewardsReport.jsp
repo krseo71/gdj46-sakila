@@ -31,12 +31,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>RewardsReport</title>
 </head>
-<body class="container">
+<body>
 	<h1>RewardsReport</h1>
-	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
+	<a href="<%=request.getContextPath()%>../index.jsp" >index</a>
 	<form method="post" action="<%=request.getContextPath()%>/rewardsReport.jsp">
 		minMonthlyPurchases 입력 : <input type = "number" name = "minMonthlyPurchases">	
 		minDollarAmuntPurchased 입력 :<input type = "number" name = "minDollarAmuntPurchased">
@@ -46,7 +45,7 @@
 	if(minMonthlyPurchases!=0 && minDollarAmuntPurchased!=0){
 	%>
 	<h2><%=minMonthlyPurchases%>이상의 기간 중 <%=minDollarAmuntPurchased%>이상의 금액을 쓴 고객은 총 <%=count %>명이며 명단은 다음과 같습니다.</h2>
-	<table class="table table-bordered">
+	<table border="1">
 		<thead>
 			<tr>
 				<th>customerId</th>

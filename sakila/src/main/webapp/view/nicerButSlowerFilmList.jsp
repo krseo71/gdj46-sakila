@@ -46,13 +46,12 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>NicerButSlowerFilmList</title>
 </head>
-<body class = "container">
+<body>
 	<h1>NicerButSlowerFilmList</h1>
-	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
-	<table class="table table-bordered">
+	<a href="<%=request.getContextPath()%>../index.jsp" >index</a>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>FID</th>

@@ -12,19 +12,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>SalesByStoreList</title>
 </head>
-<body class = "container">
+<body>
 <h1>SalesByStoreList</h1>
-	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
-	<table class="table table-bordered">
+	<a href="<%=request.getContextPath()%>../index.jsp" >index</a>
+	<table border="1">
 		<thead>
 			<tr>
 				<th>store</th>
 				<th>manager</th>
 				<th>totalSales</th>
 			</tr>
+		</thead>
 		<tbody>
 				<%
 					for(SalesByStore s : list){
