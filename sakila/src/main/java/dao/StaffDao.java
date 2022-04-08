@@ -1,76 +1,67 @@
 package dao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.sql.*;
-import java.util.*;
-
+import util.DBUtil;
 public class StaffDao {
-	public List<Map<String, Object>> selectStaffList() {
-		List<Map<String, Object>> list = new ArrayList<>();
+	public List <Map<String,Object>> selectStaffList(){
+		List <Map<String,Object>> list = new ArrayList<>();
+		//데이터베이스 자원준비
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/sakila","root","java1234");
-			
-			String sql = "SELECT"
-					+ "	s1.staff_id staffId,"
-					+ "	s1.store_id storeId,"
-					+ "	CONCAT(s1.first_name,' ',s1.last_name) staffName,"
-					+ "	s1.address_id addressId,"
-					+ "	CONCAT(a.address, IFNULL(a.address2, ''), district) staffAddress,"
-					+ "	s1.email email,"
-					+ "	s1.username username,"
-					+ "	s1.last_update lastUpdate"
-					+ " FROM staff s1"
-					+ " INNER JOIN store s2"
-					+ " INNER JOIN address a"
-					+ " ON s1.staff_id = s2.manager_staff_id"
-					+ " AND s1.address_id = a.address_id;";
-			
+		try {//예외 처리
+			conn = DBUtil.getConnection();// DBUtil 내에 DB연결 호출
+			String sql ="SELECT  "
+					+ "	st1.staff_id staffId, "
+					+ "	concat(st1.first_name,' ',st1.last_name) staffName, "
+					+ "	CONCAT(a.address, IFNULL(a.address2, ' '), district) staffAddress, "
+					+ "	st1.picture picture,  "
+					+ "	st1.email, "
+					+ "	st1.store_id storeId, "
+					+ "	IF(st1.active, _utf8mb4'active',_utf8mb4' ') notes, "
+					+ "	st1.username username, "
+					+ "	st1.last_update lastUpdate "
+					+ "FROM staff st1  "
+					+ "INNER JOIN store st2 "
+					+ "ON st1.store_id = st1.store_id "
+					+ "INNER JOIN address a "
+					+ "ON st1.address_id = a.address_id "
+					+ "GROUP BY staffId";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
-			
 			while(rs.next()) {
 				Map<String, Object> map = new HashMap<>();
-				map.put("staffId", rs.getInt("staffId"));
-				map.put("storeId", rs.getInt("storeId"));
+				map.put("staffId",rs.getInt("staffId"));
 				map.put("staffName", rs.getString("staffName"));
-				map.put("addressId", rs.getInt("addressId"));
 				map.put("staffAddress", rs.getString("staffAddress"));
+				map.put("picture", rs.getString("picture"));
 				map.put("email", rs.getString("email"));
+				map.put("storeId", rs.getString("storeId"));
+				map.put("notes", rs.getString("notes"));
 				map.put("username", rs.getString("username"));
 				map.put("lastUpdate", rs.getString("lastUpdate"));
 				list.add(map);
 			}
-		}catch(Exception e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("예외발생");
 		}finally {
-			try {
+			try {//데이터 자원 반납
 				rs.close();
 				stmt.close();
 				conn.close();
-			} catch (SQLException e) {
+			}catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		return list;
 	}
-	public static void main(String[] args) {
-		StaffDao dao = new StaffDao();
-		List<Map<String, Object>> list = dao.selectStaffList();
-		for(Map m : list) {
-			System.out.print(m.get("staffId") + ", ");
-			System.out.print(m.get("storeId") + ", ");
-			System.out.print(m.get("staffName") + ", ");
-			System.out.print(m.get("addressId") + ", ");
-			System.out.print(m.get("staffAddress") + ", ");
-			System.out.print(m.get("email") + ", ");
-			System.out.print(m.get("username") + ", ");
-			System.out.print(m.get("lastUpdate"));
-			System.out.println("");
-		}
-	}
 }
-	
