@@ -12,7 +12,7 @@ import vo.NicerButSlowerFilmList;
 
 	public class NicerButSlowerFilmListDao {
 		public List<NicerButSlowerFilmList> selectNiceButSlowerFilmListByPage (int beginRow, int rowPerPage){
-			List<NicerButSlowerFilmList> list = new ArrayList();
+			List<NicerButSlowerFilmList> list = new ArrayList<>();
 			//DB자원준비
 				Connection conn = null;
 				PreparedStatement stmt = null;

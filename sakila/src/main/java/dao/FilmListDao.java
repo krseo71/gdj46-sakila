@@ -10,7 +10,7 @@ import util.DBUtil;
 import vo.FilmList;
 public class FilmListDao {
 	public List<FilmList> selectFilmListByPage (int beginRow, int rowPerPage){
-		List<FilmList> list = new ArrayList();
+		List<FilmList> list = new ArrayList<>();
 		//DB자원준비
 			Connection conn = null;
 			PreparedStatement stmt = null;
@@ -25,7 +25,7 @@ public class FilmListDao {
 				rs = stmt.executeQuery();
 				while(rs.next()) {
 					FilmList f = new FilmList();
-					f.setFID(rs.getInt("FID"));
+					f.setFid(rs.getInt("Fid"));
 					f.setTitle(rs.getString("title"));
 					f.setDescription(rs.getString("description"));
 					f.setCategory(rs.getString("category"));
@@ -95,7 +95,7 @@ public class FilmListDao {
 				rs = stmt.executeQuery();
 				while(rs.next()) {
 					FilmList f = new FilmList();
-					f.setFID(rs.getInt("FID"));
+					f.setFid(rs.getInt("Fid"));
 					f.setTitle(rs.getString("title"));
 					f.setDescription(rs.getString("description"));
 					f.setCategory(rs.getString("category"));

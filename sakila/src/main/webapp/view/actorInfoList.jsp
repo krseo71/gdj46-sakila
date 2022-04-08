@@ -34,7 +34,7 @@
 	<table border="1">
 		<thead>
 			<tr>
-				<th>actorId</th>
+			    <th>actorId</th>
 				<th>firstName</th>
 				<th>lastName</th>
 				<th>filmInfo</th>

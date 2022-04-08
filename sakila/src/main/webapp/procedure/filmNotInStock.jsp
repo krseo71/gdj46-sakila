@@ -29,7 +29,7 @@
 	<meta charset="UTF-8">
 	<title>filmNotInStock</title>
 </head>
-<body border="1">
+<body>
 	<h1>filmNotInStock</h1>
 	<a href="<%=request.getContextPath()%>../index.jsp" >index</a>
 	<form method = "post" action="<%=request.getContextPath()%>/filmNotInStock.jsp">
