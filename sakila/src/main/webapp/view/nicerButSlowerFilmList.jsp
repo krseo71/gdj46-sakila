@@ -46,12 +46,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>NicerButSlowerFilmList</title>
 </head>
-<body>
+<body class = "container">
 	<h1>NicerButSlowerFilmList</h1>
-	<a href="<%=request.getContextPath()%>../index.jsp" >index</a>
-	<table border="1">
+	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>FID</th>
@@ -83,7 +84,7 @@
 		</tbody>
 	</table>
 	<!-- 현재 페이지에 정보를 갱신하는 from -->
-	<form method="post" action = "<%=request.getContextPath()%>/nicerButSlowerFilmList.jsp" >
+	<form method="post" action = "<%=request.getContextPath()%>/view/nicerButSlowerFilmList.jsp" >
 	<!-- 검색 기능 부분 -->
 	<input type = text name ="name">
 	<!-- 페이지 목록 표시 부분 -->

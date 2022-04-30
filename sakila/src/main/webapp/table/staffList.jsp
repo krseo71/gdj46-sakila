@@ -2,6 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import = "dao.*" %>
 <%
+	//dao 값 호출
 	StaffDao staffDao = new StaffDao();
 	List<Map<String,Object>> list = staffDao.selectStaffList();
 %>
@@ -9,12 +10,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>staffList</title>
 </head>
-<body>
+<body class="container">
 	<h1>Staff List</h1>
 	<a href="<%=request.getContextPath()%>/index.jsp">index</a>
-	<table border="1">
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>staffId</th>
@@ -29,7 +31,7 @@
 		</thead>
 		<tbody>
 			<%
-				for(Map<String, Object> m : list) {
+				for(Map m : list) {
 			%>
 					<tr>
 						<td><%=m.get("staffId")%></td>

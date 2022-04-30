@@ -92,19 +92,19 @@ public class StoreDao {
 		return list;
 	}
 
-	//selectStoreList() 테스트 코드 매우중요 --단위테스트
-public static void main(String[] args) {
-	StoreDao dao = new StoreDao();
-	List<Map<String, Object>> list = dao.selectStoreList();
-	for(Map<String, Object> m : list) {
-		System.out.print(m.get("storeId")+", ");
-		System.out.print(m.get("staffId")+", ");
-		System.out.print(m.get("staffName")+", ");
-		System.out.print(m.get("addressId")+", ");
-		System.out.print(m.get("staffAddress")+", ");
-		System.out.print(m.get("lastUpdate"));
-		System.out.println("");
-		
+	// selectStoreList() 테스트 코드 매우중요 --단위테스트
+	public static void main(String[] args) {
+		StoreDao dao = new StoreDao();
+		List<Map<String, Object>> list = dao.selectStoreList();
+		for (Map m : list) {
+			System.out.print(m.get("storeId") + ", ");
+			System.out.print(m.get("staffId") + ", ");
+			System.out.print(m.get("staffName") + ", ");
+			System.out.print(m.get("addressId") + ", ");
+			System.out.print(m.get("staffAddress") + ", ");
+			System.out.print(m.get("lastUpdate"));
+			System.out.println("");
+
+		}
 	}
-}
 }

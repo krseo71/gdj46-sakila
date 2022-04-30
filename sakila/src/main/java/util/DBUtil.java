@@ -5,7 +5,7 @@ public class DBUtil {
 	public static Connection getConnection() {
 		String dburl = "jdbc:mariadb://localhost:3306/sakila"; // DB 주소
 		String dbuser = "root"; // DB 아이디
-		String dbpw = "java1234"; // DB 패스워드
+		String dbpw = "mariadb1234"; // DB 패스워드
 		
 		Connection conn = null;
 		try {

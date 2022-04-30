@@ -6,11 +6,18 @@ public class ActorInfo {
 	private String lastName;
 	private String filmInfo;
 	
+	/* Object 클래스를 오버라이딩 클래스 안에 그 필드의 객체들을 나오는거 toString메서드 라고 약속 - 소스에 generate toString()이라고 있다.
+	@Override 
+	public String toString(){
+		return this.actorId + this.firstName + this.lastName + this.filmInfo;
+	}
+	*/
 	@Override
 	public String toString() {
 		return "ActorInfo [actorId=" + actorId + ", firstName=" + firstName + ", lastName=" + lastName + ", filmInfo="
 				+ filmInfo + "]";
 	}
+
 	public int getActorId() {
 		return actorId;
 	}
@@ -35,6 +42,4 @@ public class ActorInfo {
 	public void setFilmInfo(String filmInfo) {
 		this.filmInfo = filmInfo;
 	}
-	
-	
 }

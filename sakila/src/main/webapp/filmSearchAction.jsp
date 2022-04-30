@@ -1,32 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ page import ="java.util.*" %>
 <%@ page import ="dao.*" %>
+<%@ page import ="vo.*" %>
 <%
 	//요청값 받기
 	//1.검색관련
-	//storeId
-	int storeId =-1; //선택 없음 = -1
-	if(request.getParameter("storeId")!=null&&!request.getParameter("storeId").equals("")){
-		storeId = Integer.parseInt(request.getParameter("storeId"));
-		System.out.println(storeId+"<--storeId");//디버깅
+	//category
+	String category ="";
+	if(request.getParameter("category")!=null){
+		category = request.getParameter("category");
+		System.out.println(category+"<--category");//디버깅
 	}
-	//customerName
-	String customerName ="";
-	if(request.getParameter("customerName")!=null){
-		customerName = request.getParameter("customerName");
-		System.out.println(customerName+"<--customerName");//디버깅
+	//rating
+	String rating ="";
+	if(request.getParameter("rating")!=null){
+		rating = request.getParameter("rating");
+		System.out.println(rating+"<--rating");//디버깅
 	}
-	//beginDate
-	String beginDate ="";
-	if(request.getParameter("beginDate")!=null){
-		beginDate = request.getParameter("beginDate");
-		System.out.println(beginDate+"<--beginDate");//디버깅
+	//price
+	double price =0;
+	if(request.getParameter("price")!=null){
+		price = Double.parseDouble(request.getParameter("price"));
+		System.out.println(price+"<--price");//디버깅
 	}
-	//endDate
-	String endDate ="";
-	if(request.getParameter("endDate")!=null){
-		endDate = request.getParameter("endDate");
-		System.out.println(endDate+"<--endDate");//디버깅
+	//length
+	int minLength =0;
+	if(request.getParameter("minLength")!=null&&!request.getParameter("minLength").equals("")){
+		minLength = Integer.parseInt(request.getParameter("minLength"));
+		System.out.println(minLength+"<--minLength");//디버깅
+	}
+	int maxLength =10000;
+	if(request.getParameter("maxLength")!=null&&!request.getParameter("maxLength").equals("")){
+		maxLength = Integer.parseInt(request.getParameter("maxLength"));
+		System.out.println(maxLength+"<--maxLength");//디버깅
+	}
+	//title
+	String title ="";
+	if(request.getParameter("title")!=null){
+		title = request.getParameter("title");
+		System.out.println(title+"<--title");//디버깅
+	}
+	//actors
+	String actors ="";
+	if(request.getParameter("actors")!=null){
+		actors = request.getParameter("actors");
+		System.out.println(actors+"<--actors");//디버깅
 	}
 	//2. 페이징
 	int currentPage = 1; // 현재 페이지 초기 값 1
@@ -52,68 +70,65 @@
 	int lastPage = 0; //마지막 페이지 변수 초기화
 	
 	//dao 호출
-	RentalDao rentalDao = new RentalDao();
+	FilmDao filmDao = new FilmDao();
 	//검색 후 리스트
-	List<Map<String,Object>> rentalList = rentalDao.selectRentalSearchList(storeId, customerName, beginDate, endDate, beginRow, rowPerPage);
+	List<FilmList> filmList = filmDao.selectFilmListSearch(category, rating, price, minLength,maxLength, title, actors, beginRow, rowPerPage);
 	//검색후 전체 게시물 수
-	int totalRow =rentalDao.totalRow(storeId, customerName, beginDate, endDate);
+	int totalRow = filmDao.totalRowFilmListSearch(category, rating, price, minLength,maxLength, title, actors);
 	System.out.println(totalRow+"<--totalRow");
 	//마지막 페이지
 	lastPage = ((totalRow - 1) / rowPerPage + 1); //마지막 페이지를 구하는 연산식
 	System.out.println(lastPage+"<--lastPage");
-%>
+ %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<title>rentalSearchAction</title>
+	<title>filmSearchResult</title>
 </head>
 <body class="container">
-	<h1>대여 테이블 상세 검색 결과</h1>
-	<a href="<%=request.getContextPath()%>/rentalSearchForm.jsp" >검색창으로 돌아가기</a>
-	<form method="get" action="<%=request.getContextPath()%>/rentalSearchAction.jsp">
+	<h1>필름 리스트 뷰 검색 결과</h1>
+	<a href="<%=request.getContextPath()%>/filmSearchForm.jsp" >검색창으로 돌아가기</a>
+	<form method="get" action="<%=request.getContextPath()%>/filmSearchAction.jsp">
 		<!-- 검색정보 그대로 전달하기 -->
-		<input type="hidden" name ="storeId" value ="<%=storeId%>">
-		<input type="hidden" name ="customerName" value ="<%=customerName%>">
-		<input type="hidden" name ="beginDate" value ="<%=beginDate%>">
-		<input type="hidden" name ="endDate" value ="<%=endDate%>">
-		<!-- 상세검색 결과 테이블 -->
+		<input type="hidden" name ="category" value ="<%=category%>">
+		<input type="hidden" name ="rating" value ="<%=rating%>">
+		<input type="hidden" name ="price" value ="<%=price%>">
+		<input type="hidden" name ="minLength" value ="<%=minLength%>">
+		<input type="hidden" name ="maxLength" value ="<%=maxLength%>">
+		<input type="hidden" name ="title" value ="<%=title%>">
+		<input type="hidden" name ="actors" value ="<%=actors%>">
 		<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>rentalId</th>
-				<th>rentalDate</th>
-				<th>inventoryId</th>
-				<th>customerId</th>
-				<th>returnDate</th>
-				<th>staffId</th>
-				<th>lastUpdate</th>
-				<th>customerName</th>
-				<th>storeId</th>
-				<th>filmId</th>
+				<th>FID</th>
 				<th>title</th>
+				<th>description</th>
+				<th>category</th>
+				<th>price</th>
+				<th>length</th>
+				<th>rating</th>
+				<th>actors</th>
 			</tr>
 		<tbody>
 				<%
-				for(Map<String, Object> m : rentalList) {
+					for(FilmList f :filmList){
 				%>
 			<tr>
-				<td><%=m.get("rentalId")%></td>
-				<td><%=m.get("rentalDate")%></td>
-				<td><%=m.get("inventoryId")%></td>
-				<td><%=m.get("customerId")%></td>
-				<td><%=m.get("returnDate")%></td>
-				<td><%=m.get("staffId")%></td>
-				<td><%=m.get("lastUpdate")%></td>
-				<td><%=m.get("customerName")%></td>
-				<td><%=m.get("storeId")%></td>
-				<td><%=m.get("filmId")%></td>
-				<td><%=m.get("title")%></td>
+				<td><%=f.getFID()%></td>
+				<td><%=f.getTitle()%></td>
+				<td><%=f.getDescription()%></td>
+				<td><%=f.getCategory()%></td>
+				<td><%=f.getPrice()%></td>
+				<td><%=f.getLength()%></td>
+				<td><%=f.getRating()%></td>
+				<td><%=f.getActors()%></td>
+			</tr>
 			</tr>
 				<%
-					}
-				%>
+				}
+				 %>
 		</tbody>
 	</table>
 	<!-- 페이지 목록 표시 부분 -->

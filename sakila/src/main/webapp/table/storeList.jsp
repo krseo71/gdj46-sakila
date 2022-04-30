@@ -9,12 +9,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>Store List</title>
 </head>
-<body>
+<body class="container">
 	<h1>Store List</h1>
 	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
-	<table border="1">
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>storeId</th>
@@ -27,7 +28,7 @@
 		</thead>
 		<tbody>
 			<%
-				for(Map<String, Object> m : list) {
+				for(Map m : list) {
 			%>
 					<tr>
 						<td><%=m.get("storeId")%></td>

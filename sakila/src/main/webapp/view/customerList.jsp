@@ -106,7 +106,7 @@
 		</tbody>
 	</table>
 	<!-- 현재 페이지에 정보를 갱신하는 from -->
-	<form method="post" action = "<%=request.getContextPath()%>/customerList.jsp" >
+	<form method="post" action = "<%=request.getContextPath()%>/view/customerList.jsp" >
 	<!-- 검색 기능 부분 -->
 	<div>
 		<select name ="search"  value = <%=search%>>

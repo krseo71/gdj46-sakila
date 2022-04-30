@@ -26,4 +26,7 @@ public class Language {
 	public String toString() {
 		return "Language [languageId=" + languageId + ", name=" + name + ", lastUpdage=" + lastUpdage + "]";
 	}
+	
+	
+
 }

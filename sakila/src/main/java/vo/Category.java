@@ -1,9 +1,15 @@
 package vo;
-
 public class Category {
 	private int categoryId;
 	private String name;
 	private String lastUpdate;
+	
+	
+	@Override
+	public String toString() {
+		return "Category [categoryId=" + categoryId + ", name=" + name + ", lastUpdate=" + lastUpdate + "]";
+	}
+	
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -22,8 +28,7 @@ public class Category {
 	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
-	@Override
-	public String toString() {
-		return "Category [categoryId=" + categoryId + ", name=" + name + ", lastUpdate=" + lastUpdate + "]";
-	}
+	
+	
+
 }

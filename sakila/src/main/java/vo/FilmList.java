@@ -1,7 +1,7 @@
 package vo;
 
 public class FilmList {
-	private int fid;
+	private int FID;
 	private String title;
 	private String description;
 	private String category;
@@ -9,11 +9,17 @@ public class FilmList {
 	private int length;
 	private String rating;
 	private String actors;
-	public int getFid() {
-		return fid;
+	
+	@Override
+	public String toString() {
+		return "FilmLIst [FID=" + FID + ", title=" + title + ", description=" + description + ", category=" + category
+				+ ", price=" + price + ", length=" + length + ", rating=" + rating + ", actors=" + actors + "]";
 	}
-	public void setFid(int fid) {
-		this.fid = fid;
+	public int getFID() {
+		return FID;
+	}
+	public void setFID(int fID) {
+		FID = fID;
 	}
 	public String getTitle() {
 		return title;
@@ -57,10 +63,7 @@ public class FilmList {
 	public void setActors(String actors) {
 		this.actors = actors;
 	}
-	@Override
-	public String toString() {
-		return "FilmList [fid=" + fid + ", title=" + title + ", desciption=" + desciption + ", category=" + category
-				+ ", price=" + price + ", length=" + length + ", rating=" + rating + ", actors=" + actors + "]";
-	}
 	
+	
+
 }

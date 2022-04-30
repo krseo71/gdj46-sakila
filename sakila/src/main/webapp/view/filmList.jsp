@@ -64,7 +64,7 @@
 	//filmInStock
 	List<Map<String, Object>> filmInStockList = new ArrayList<Map<String, Object>>(); 
 	//store Id에 따른 모든값을 filmInStock에 저장
-	for(Map<String, Object> m : storelist){
+	for(Map m : storelist){
 	Map<String,Object> map = filmDao.filmInStockCall(filmId,(Integer)m.get("storeId"));
 	map.put("storeId", m.get("storeId"));
 	filmInStockList.add(map);
@@ -72,7 +72,7 @@
 	//filmNotInStock
 	List<Map<String, Object>> filmNotInStockList = new ArrayList<Map<String, Object>>(); 
 	//store Id에 따른 모든값을 filmnotInStock에 저장
-	for(Map<String, Object> m : storelist){
+	for(Map m : storelist){
 	Map<String,Object> map = filmDao.filmNotInStockCall(filmId,(Integer)m.get("storeId"));
 	map.put("storeId", m.get("storeId"));
 	filmNotInStockList.add(map);
@@ -87,13 +87,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>FilmList</title>
 </head>
-<body>
+<body class = "container">
 	<h1>FilmList</h1>
-	<a href="<%=request.getContextPath()%>../index.jsp" >index</a>
-	<form method="post" action = "<%=request.getContextPath()%>/filmList.jsp" >
-	<table border="1">
+	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
+	<form method="post" action = "<%=request.getContextPath()%>/view/filmList.jsp" >
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>FID</th>
@@ -111,7 +112,7 @@
 				%>
 			<tr>
 				<td><%=f.getFID()%></td>
-				<td><button type ="submit" class="" name="filmId" value="<%=f.getFID()%>"><%=f.getTitle()%></button> </td>
+				<td><button type ="submit" class="btn btn-light" name="filmId" value="<%=f.getFID()%>"><%=f.getTitle()%></button> </td>
 				<td><%=f.getDescription()%></td>
 				<td><%=f.getCategory()%></td>
 				<td><%=f.getPrice()%></td>
@@ -120,29 +121,26 @@
 				<td><%=f.getActors()%></td>
 			</tr>
 				<%
-				if (filmInStockList.size() != 0 && f.getFID() == filmId && filmId != 0) {
-				%>
-				<tr>
-					<td colspan="7">filmInstockList</td>
-					<td>
-						<button type="submit" class="" name="filmId"
-							value="0">닫기</button>
-					</td>
-					<%
-					for (Map<String, Object> m : filmInStockList) {
-					%>
-				
-				
-				<tr>
-					<td colspan="2">storeID:<%=m.get("storeId")%></td>
-					<td colspan="6"><%=m.get("list")%></td>
-				</tr>
+					if(filmInStockList.size()!=0 && f.getFID()==filmId && filmId !=0){
+				%>		
+						<tr>
+						<td colspan="7">filmInstockList</td>
+						<td>
+							<button type ="submit" class="btn btn-light" name="filmId" value="0">닫기</button>
+						</td>
+				<%		
+						for(Map m : filmInStockList){
+				 %>	
+				 	<tr>		
+				 		<td colspan="2">storeID:<%=m.get("storeId") %></td>
+						<td colspan="6"><%=m.get("list")%></td>
+					</tr>
+				<%
+						}
+				%>						
+						</tr>
 				<%
 					}
-				%>
-				</tr>
-				<%
-				}
 				%>
 				<%
 					if(filmNotInStockList.size()!=0 && f.getFID()==filmId && filmId !=0){
@@ -150,7 +148,7 @@
 						<tr>
 						<td colspan="8">filmNotInstockList</td>
 				<%		
-						for(Map<String, Object> m : filmNotInStockList){
+						for(Map m : filmNotInStockList){
 				 %>	
 				 	<tr>		
 				 		<td colspan="2">storeID:<%=m.get("storeId") %></td>

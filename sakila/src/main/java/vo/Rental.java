@@ -55,4 +55,6 @@ public class Rental {
 				+ ", customerId=" + customerId + ", returnDate=" + returnDate + ", staffId=" + staffId + ", lastUpdate="
 				+ lastUpdate + "]";
 	}
+	
+	
 }

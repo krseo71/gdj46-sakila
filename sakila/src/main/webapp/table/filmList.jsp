@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<%@ page import ="dao.ActorInfoDao" %>
-<%@ page import ="vo.ActorInfo" %>
-<%@ page import ="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import = "dao.*" %>
+<%@ page import = "vo.*" %>
 <%
-	request.setCharacterEncoding("UTF-8");//인코딩
-	//변수 선언 및 요청 값 받기
+	//요청값 받기
+	//페이징 부분
 	int currentPage = 1; // 현재 페이지 초기 값 1
 	if(request.getParameter("currentPage")!=null){
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -28,23 +28,14 @@
 	int totalRow =0; //전체행 변수 초기화
 	int lastPage = 0; //마지막 페이지 변수 초기화
 	
-	//ActorInfoDao 호출
-	List<ActorInfo> list = new ArrayList<ActorInfo>();
-	ActorInfoDao actorInforDao = new ActorInfoDao();
-	//검색전 list 호출
-	list = actorInforDao.selectActorInfoListByPage(beginRow, rowPerPage);
-	totalRow = actorInforDao.totalRow();
-	System.out.println(totalRow+"<-totalRow");
-	//검색기능 -actorInfo table는 배우이름만 검색, film_info는 다중값이라 원자성이 없으므로, 검색하기엔 좋지않다.
-	String name = ""; //검색내용 변수 초기화
-	if(request.getParameter("name")!=null){
-		name = request.getParameter("name");
-		System.out.println(name+"<--name");
-	}
-	//배우이름검색시 리스트
-	if(!name.equals("")){
-		list = actorInforDao.searchActorInfoListByName(name, beginRow, rowPerPage);
-	}
+	//dao 값 호출
+	FilmDao filmDao = new FilmDao();
+	//list 정보 호출
+	List<Film> filmList = filmDao.selectFilmList(beginRow, rowPerPage);
+	
+	//전체 행의 수 값 호출
+	totalRow = filmDao.totalRow();
+	System.out.println(totalRow+"<-totalRow"); // 디버깅
 	//연산식
 	lastPage = ((totalRow - 1) / rowPerPage + 1); //마지막 페이지를 구하는 연산식
 %>
@@ -53,44 +44,64 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<title>ActorInfoList</title>
+	<title>filmList</title>
 </head>
-<body class = "container">
-	<h1>ActorInfoList</h1>
-	<a href="<%=request.getContextPath()%>/index.jsp" >index</a>
+<body >
+	<h1>Film List</h1>
+	<a href="<%=request.getContextPath()%>/index.jsp">index</a>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>ActorId</th>
-				<th>firstName</th>
-				<th>lastName</th>
-				<th>filmInfo</th>
+				<th>filmId</th>
+				<th>title</th>
+				<th width ="50%">description</th>
+				<th>
+						release<br>
+						Year
+				</th>
+				<th>languageId</th>
+				<th>
+						original<br>
+						LanguageId
+				</th>
+				<th>
+						rental<br>
+						Duration
+				</th>
+				<th>rentalRate</th>
+				<th>length</th>
+				<th>replacementCost</th>
+				<th>rating</th>
+				<th>specialFeatures</th>
+				<th>lastUpdate</th>
 			</tr>
+		</thead>
 		<tbody>
-				<%
-					for(ActorInfo a : list){
-				%>
-			<tr>
-				<td><%=a.getActorId()%></td>
-				<td><%=a.getFirstName()%></td>	
-				<td><%=a.getLastName()%></td>
-				<td><%=a.getFilmInfo()%></td>
-			</tr>
-				<%
-					}
-				
-				 %>
+			<%
+				for(Film f : filmList) {
+			%>
+					<tr>
+						<td><%=f.getFilmId()%></td>
+						<td><%=f.getTitle()%></td>
+						<td><%=f.getDescription()%></td>
+						<td><%=f.getReleaseYear()%></td>
+						<td><%=f.getLanguageId()%></td>
+						<td><%=f.getOriginalLanguageId()%></td>
+						<td><%=f.getRentalDuration()%></td>
+						<td><%=f.getRentalRate()%></td>
+						<td><%=f.getLength()%></td>
+						<td><%=f.getReplacementCost()%></td>
+						<td><%=f.getRating()%></td>
+						<td><%=f.getSpecialFeatures()%></td>
+						<td><%=f.getLastUpdate()%></td>
+					</tr>
+			<%
+				}
+			%>
 		</tbody>
 	</table>
-	<!-- 현재 페이지에 정보를 갱신하는 from -->
-	<form method="post" action = "<%=request.getContextPath()%>/view/actorInfoList.jsp" >
-	<!-- 검색 기능 부분 -->
-	<div>
-	배우이름 검색:
-	<input type = text name ="name" value="<%=name %>">
-	<button type = "submit" class="btn btn-outline-info">검색</button>
-	</div>
 	<!-- 페이지 목록 표시 부분 -->
+	<form method ="get" action = "<%=request.getContextPath()%>/table/filmList.jsp">
 		<!-- 이전 목록 표시 -->
 		<%
 			if(minPage > 10){
@@ -139,6 +150,6 @@
 		 <%
 			}
 		 %>
-		</form>	
+		</form>
 </body>
 </html>

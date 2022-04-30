@@ -45,7 +45,7 @@ public class ActorInfoDao {
 		return list;
 	}
 	//전체행을 구하는 메서드
-	public int selectActorInfoTotalRow() {
+	public int totalRow() {
 		int totalRow =0; //전체 행의 수 변수 초기화
 		//DB자원 준비
 		Connection conn = null;

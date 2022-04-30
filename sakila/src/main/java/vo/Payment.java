@@ -55,4 +55,7 @@ public class Payment {
 		return "Payment [paymentId=" + paymentId + ", customerId=" + customerId + ", staffId=" + staffId + ", rentalId="
 				+ rentalId + ", amount=" + amount + ", paymentDate=" + paymentDate + ", lastUpdate=" + lastUpdate + "]";
 	}
+	
+	
+
 }

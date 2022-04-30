@@ -1,39 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<title>Index</title>
 </head>
-<body>
-	<h1>INDEX</h1>
-	
-	<h3>테이블 리스트</h3>
-	<ol>
-		<li><a href="<%=request.getContextPath()%>/table/storeList.jsp">storeList</a></li>
-		<li><a href="<%=request.getContextPath()%>/table/staffList.jsp">staffList</a></li>
-
-	</ol>
-	<h3>뷰 리스트</h3>
-	<ol>
-		<li><a href="<%=request.getContextPath()%>/view/actorInfoList.jsp">actorInfoList(view)</a></li>
-		<li><a href="<%=request.getContextPath()%>/view/customerList.jsp">customerList(view)</a></li>
-		<li><a href="<%=request.getContextPath()%>/view/filmList.jsp">filmList(view)</a></li>
-		<li><a href="<%=request.getContextPath()%>/view/nicerButSlowerFilmList.jsp">nicerButSlowerFilmList(view)</a></li>
-		<li><a href="<%=request.getContextPath()%>/view/salesByFilmCategory.jsp">salesByFilmCategory(view)</a></li>
-		<li><a href="<%=request.getContextPath()%>/view/salesByStore.jsp">salesByStore(view)</a></li>
-		<li><a href="<%=request.getContextPath()%>/view/staffListView.jsp">staffList(view)</a></li>
-
-	</ol>
-	<h3>프로시저</h3>
-		<li><a href="<%=request.getContextPath()%>/procedure/filmInStock.jsp">filmInStock</a></li>
-		<li><a href="<%=request.getContextPath()%>/procedure/filmNotInStock.jsp">filmNotInStock</a></li>
-		<li><a href="<%=request.getContextPath()%>/procedure/rewardsReport.jsp">rewardsReport</a></li>
-		
-	<h3>상세검색</h3>
-	<ol>
-		<li><a href="<%=request.getContextPath()%>/search/filmSearchForm.jsp">필름 상세검색</a></li>
-		<li><a href="<%=request.getContextPath()%>/search/rentalSearchForm">대여 상세검색</a></li>
-	</ol>
+<body class = "container">
+	<h1>index</h1>
+	<ul class="list-group list-group-horizontal">
+		<!-- 테이블 -->
+		<li class="list-group-item">
+			<h2>테이블 구현</h2>
+			<ol class="list-group">
+				<li><a href="<%=request.getContextPath() %>/table/filmList.jsp">filmList</a>
+				<li><a href="<%=request.getContextPath() %>/table/actorList.jsp">actorList</a>
+				<li><a href="<%=request.getContextPath() %>/table/rentalList.jsp">rentalList</a>
+				<li><a href="<%=request.getContextPath() %>/table/paymentList.jsp">paymentList</a>
+				<li><a href="<%=request.getContextPath() %>/table/storeList.jsp">storeList</a>
+				<li><a href="<%=request.getContextPath() %>/table/staffList.jsp">staffList</a>
+			</ol>
+		</li>
+		<!-- view 7개 리스트 -->
+		<li class="list-group-item">
+			<h2>뷰 구현</h2>
+			<ol class="list-group">
+				<li><a href="<%=request.getContextPath() %>/view/actorInfoList.jsp">actorInforLIst</a>
+				<li><a href="<%=request.getContextPath() %>/view/customerList.jsp">customerList</a>
+				<li><a href="<%=request.getContextPath() %>/view/filmList.jsp">filmList</a>
+				<li><a href="<%=request.getContextPath() %>/view/nicerButSlowerFilmList.jsp">niceButSlowerFilmList</a>
+				<li><a href="<%=request.getContextPath() %>/view/salesByFilmCategory.jsp">salesByFilmCategory</a>
+				<li><a href="<%=request.getContextPath() %>/view/salesByStore.jsp">salesByStore</a>
+				<li><a href="<%=request.getContextPath() %>/view/staffListView.jsp">staffListView</a>
+			</ol>
+		</li>	
+		<!-- 프로시저 3개 결과 화면 -->
+			<li class="list-group-item">		
+			<h2>프로시저</h2>
+			<ol class="list-group">
+				<li><a href="<%=request.getContextPath() %>/filmInStock.jsp">filmInStock</a>
+				<li><a href="<%=request.getContextPath() %>/filmNotInStock.jsp">filmNotInStock</a>
+				<li><a href="<%=request.getContextPath() %>/rewardsReport.jsp">rewardsReport</a>
+			</ol>
+		</li>
+		<!-- 상세검색-->
+		<li class="list-group-item">
+			<h2>상세검색</h2>
+			<ol class="list-group">
+				<li><a href="<%=request.getContextPath() %>/filmSearchForm.jsp">filmSearchForm</a>
+				<li><a href="<%=request.getContextPath() %>/rentalSearchForm.jsp">rentalSearchForm</a>
+			</ol>
+		</li>
+	</ul>
 </body>
 </html>
